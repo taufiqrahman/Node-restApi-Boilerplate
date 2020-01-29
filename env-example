@@ -1,0 +1,7 @@
+NODE_ENV=development
+PORT=3000
+# Set Database here
+DBHOST = 123.123.123.233
+DBUSER = root
+DBPASS = root
+DBNAME = micro_api

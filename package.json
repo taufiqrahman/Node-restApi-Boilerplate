@@ -1,0 +1,26 @@
+{
+  "name": "mikro-api",
+  "version": "1.0.0",
+  "description": "skeleton REst API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "rest",
+    "api"
+  ],
+  "author": "Taufiq Rahman",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.7",
+    "body-parser": "^1.19.0",
+    "core-js": "^3.6.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.1.0",
+    "require-all": "^3.0.0",
+    "sequelize": "^5.21.3"
+  }
+}
