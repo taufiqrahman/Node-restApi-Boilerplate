@@ -93,22 +93,20 @@ exports.signup = async function (req, res, next) {
     })
 
 };
-
+// updatePassword need Bearer Token
 exports.updatePassword = async (req, res, next) => {
+    let id = identity.getId()
     console.log('updatePassword')
     try {
-        const person = await user.findIdentity(req.params.id);
-        console.log('person id:' + person.id)
-        console.log('identity :' + identity.getId())
-        if (person.id !== identity.getId()) {
-            return response.responseUnauthorize('', '', res);
-        }
+        const person = await user.findIdentity(id);
+        console.log('person id:' + id)
         person.password_hash = await bcrypt.hash(req.params.password, saltRounds);
         person.auth_key = crypto.randomBytes(15).toString('hex');
         person.save();
         var data = {
             id: person.id,
-            username: person.username
+            username: person.username,
+            token: person.auth_key
         }
         response.responseUpdated(data, '', res);
         return;
@@ -119,7 +117,7 @@ exports.updatePassword = async (req, res, next) => {
     }
 
 }
-
+// showUser need Bearer Token
 exports.showUser = async (req, res, next) => {
     console.log('showUser');
     let data = {
@@ -127,11 +125,26 @@ exports.showUser = async (req, res, next) => {
         name: identity.getName(),
         email: identity.getEmail()
     }
-    console.log('request id:' + req.params.id)
     console.log('identity :' + identity.getId())
-    if (parseInt(req.params.id) !== parseInt(identity.getId())) {
-        return response.responseUnauthorize('', '', res);
-    }
-
+    // if (parseInt(req.params.id) !== parseInt(identity.getId())) {
+    //     return response.responseUnauthorize('', '', res);
+    // }
     response.responseSuccess(data, res)
+}
+// signOut need Bearer Token
+exports.signOut = async (req, res, next) => {
+    console.log('sign Out')
+    let id = identity.getId()
+    try {
+        const person = await user.findIdentity(id);
+        console.log('person id:' + id)
+        person.auth_key = crypto.randomBytes(15).toString('hex');
+        person.save();
+        response.responseSuccess('Log out Success', res)
+        return;
+    } catch (error) {
+        console.log(error)
+        response.responseFailed('bad request or no user exist', error, res)
+        next()
+    }
 }

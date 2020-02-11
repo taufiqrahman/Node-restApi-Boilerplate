@@ -14,7 +14,8 @@ const BASE_URL = '/v1/user'
 module.exports = Express.Router({
         mergeParams: true
     })
-    .get(`${BASE_URL}/showuser/:id`, BearerAuthorization, Controller.showUser)
+    .get(`${BASE_URL}/showuser/`, BearerAuthorization, Controller.showUser)
     .post(`${BASE_URL}/signin`, Controller.signin)
     .post(`${BASE_URL}/signup`, Controller.signup)
-    .put(`${BASE_URL}/:id/:password`, BearerAuthorization, Controller.updatePassword)
+    .put(`${BASE_URL}/:password`, BearerAuthorization, Controller.updatePassword)
+    .get(`${BASE_URL}/signout/`, BearerAuthorization, Controller.signOut)

@@ -8,8 +8,9 @@
 ```
 $ npm install
 $ sequelize db:migrate
-$ node index.js 
+$ node index.js
 ```
+
 ## **USAGE**
 
 ### **Sign Up** new user
@@ -49,6 +50,16 @@ Payload JSON
 }
 ```
 
+### **Sign Out** user
+
+Methode : GET
+Bearer Token required
+URL :
+
+```
+http://localhost:3000/api/v1/user/signout
+```
+
 ### **Update User Password**
 
 Methode : PUT
@@ -56,26 +67,28 @@ Bearer Token required
 URL :
 
 ```
-http://localhost:3000/api/v1/user/:id/:password
+http://localhost:3000/api/v1/user/:password
 ```
 
 Payload in url e.g:
 
 ```
-http://localhost:3000/api/v1/user/1/secret_password
+http://localhost:3000/api/v1/user/secret_password
 ```
 
 ### **Show User**
 
-Methode : GET, Bearer Token required, URL:
+Methode : GET
+Bearer Token required
+URL:
 
 ```
-http://localhost:3000/api/v1/user/showuser/:id
+http://localhost:3000/api/v1/user/showuser/
 
 ```
 
 Payload in url e.g:
 
 ```
-http://localhost:3000/api/v1/user/showuser/26
+http://localhost:3000/api/v1/user/showuser/
 ```
