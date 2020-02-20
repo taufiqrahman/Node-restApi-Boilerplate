@@ -163,16 +163,15 @@ exports.fbSignUpOrLogin = async function(req, res, next) {
   let token = req.body.token;
 
   // damnbanq dev facebook app information
-  let damnbanq_token_old = "3336621933075857|zYvp1NpOwIKr_DJdFFjx0xFCYaA";
-  let damnbanq_token = "2798648496839935|93155bb739f360591192ab405ca2c0c9";
-  let app_id = "2798648496839935";
-  let damnbanq_app_name = "Damnbanq Dev 2020";
+  let app_token = "YOUT_APP_ID|YOUR_APP_SECRET";
+  let app_id = "YOUT_APP_ID";
+  let app_name = "YOUR_APP_NAME";
 
   const url =
     "https://graph.facebook.com/debug_token?input_token=" +
     token +
     "&access_token=" +
-    damnbanq_token;
+    app_token;
 
   // Make a request to authenticate facebook token
   // and Verified the token is valid and from damnbanq app
