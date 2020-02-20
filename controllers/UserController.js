@@ -90,8 +90,15 @@ exports.signup = async function(req, res, next) {
     })
     .catch(function(err) {
       console.log(err);
+      console.log(err);
+
+      //email duplicate error
+      if (err.errors[0].message === "This email is already taken.") {
+        response.responseNotValidate("", "email already exist", res);
+        return;
+      }
       // console.log(err.message);
-      response.responseNotValidate(err.name, err.errors, res);
+      response.responseNotValidate(err.name, err.errors[0].message, res);
       return;
     });
 };

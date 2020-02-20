@@ -11,6 +11,14 @@ $ sequelize db:migrate
 $ node index.js
 ```
 
+Note:
+
+Because this project use sequelize, you need to install sequelize-first if you dont have one
+
+```
+npm install -g sequelize-cli
+```
+
 ## **USAGE**
 
 ### **Sign Up** new user
