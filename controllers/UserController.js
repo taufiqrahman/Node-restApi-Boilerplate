@@ -162,7 +162,7 @@ exports.fbSignUpOrLogin = async function(req, res, next) {
   let password_hash = await bcrypt.hash(req.body.password, saltRounds);
   let token = req.body.token;
 
-  // damnbanq dev facebook app information
+  // your facebook app information
   let app_token = "YOUT_APP_ID|YOUR_APP_SECRET";
   let app_id = "YOUT_APP_ID";
   let app_name = "YOUR_APP_NAME";
@@ -174,13 +174,13 @@ exports.fbSignUpOrLogin = async function(req, res, next) {
     app_token;
 
   // Make a request to authenticate facebook token
-  // and Verified the token is valid and from damnbanq app
+  // and Verified the token is valid and from your app
   axios
     .get(url)
     .then(function(resp) {
       console.log("respon");
       console.log(resp.data);
-      // if token come from damnbanq and valid, do ....
+      // if token come from your app and valid, do ....
       if (resp.data.data.is_valid && resp.data.data.app_id === app_id) {
         console.log("token is approved");
         user
@@ -235,12 +235,12 @@ exports.fbSignUpOrLogin = async function(req, res, next) {
             return;
           });
       } else if (!resp.data.data.is_valid && resp.data.data.app_id === app_id) {
-        // if token is expired and come from damnbanq
+        // if token is expired and come from your app
         console.log("token expired");
         response.responseNotValidate("token expired", "token expired", res);
         return;
       } else {
-        // if token is not valid or not coming from damnbanq
+        // if token is not valid or not coming from your app
         console.log("Token invalid");
         response.responseNotValidate("", "Token not valid", res);
         return;
