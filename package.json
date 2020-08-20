@@ -18,7 +18,7 @@
   "author": "Taufiq Rahman",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^3.0.7",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "core-js": "^3.6.1",
     "dotenv": "^8.2.0",
